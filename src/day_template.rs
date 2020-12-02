@@ -7,11 +7,11 @@ fn gen(input: &str) -> Input {
 }
 
 fn part1(_input: &Input) -> Output1 {
-    0
+    todo!()
 }
 
 fn part2(_input: &Input) -> Output2 {
-    0
+    todo!()
 }
 
 #[allow(dead_code, unused_imports)]
@@ -23,12 +23,12 @@ mod test {
     #[test]
     fn test1() {
         let input = gen(INPUT);
-        assert_eq!(part1(&input), 0)
+        assert_eq!(part1(&input), todo!())
     }
 
     #[test]
     fn test2() {
         let input = gen(INPUT);
-        assert_eq!(part2(&input), 0)
+        assert_eq!(part2(&input), todo!())
     }
 }

@@ -1,4 +1,4 @@
-use itertools::Itertools;
+use crate::utils::UnwrapUnchecked;
 
 pub type Input<'a> = Vec<Password<'a>>;
 pub type Output1 = usize;
@@ -7,13 +7,13 @@ pub type Output2 = usize;
 #[derive(Debug)]
 pub struct Password<'a> {
     deets: (u8, u8),
-    char: char,
+    char: u8,
     pass: &'a str,
 }
 
 impl<'a> Password<'a> {
     fn valid1(&self) -> bool {
-        let count = self.pass.chars()
+        let count = self.pass.bytes()
             .filter(|&c| c == self.char)
             .count();
         let (l, u) = self.deets;
@@ -21,25 +21,31 @@ impl<'a> Password<'a> {
     }
 
     fn valid2(&self) -> bool {
-        let mut chars = self.pass.chars();
+        let mut chars = self.pass.bytes();
         let (fst, snd) = self.deets;
-        let a = chars.nth(fst as usize - 1).unwrap();
-        let b = chars.nth((snd - fst - 1) as _).unwrap();
+        let a = unsafe { chars.nth(fst as usize - 1).unwrap_unchecked() };
+        let b = unsafe { chars.nth((snd - fst - 1) as _).unwrap_unchecked() };
         (a == self.char) ^ (b == self.char)
     }
 }
 
 pub fn gen(input: &str) -> Input {
     input.lines()
-        .map(|l| {
-            let (n, c, s) = l.split(' ').collect_tuple().unwrap();
-            let deets = n.split('-')
-                .map(|n| n.parse().unwrap())
-                .collect_tuple().unwrap();
+        .map(|l| unsafe {
+            let mut split = l.split(' ');
+            let (deets, c, s) = (
+                {
+                    let mut n = split.next().unwrap_unchecked().split('-');
+                    let l = n.next().unwrap_unchecked().parse().unwrap_unchecked();
+                    let u = n.next().unwrap_unchecked().parse().unwrap_unchecked();
+                    (l, u)
+                },
+                split.next().unwrap_unchecked(),
+                split.next().unwrap_unchecked());
 
             Password {
                 deets,
-                char: c.chars().nth(0).unwrap(),
+                char: c.bytes().nth(0).unwrap_unchecked(),
                 pass: s,
             }
         })
