@@ -1,18 +1,34 @@
 type Input = String;
-type Output1 = u32;
-type Output2 = u32;
+type Output1 = usize;
+type Output2 = usize;
 
-#[aoc_generator(day1)]
 fn gen(input: &str) -> Input {
     todo!()
 }
 
-#[aoc(day1, part1)]
-fn part1(input: &Input) -> Output1 {
-    todo!()
+fn part1(_input: &Input) -> Output1 {
+    0
 }
 
-#[aoc(day1, part2)]
-fn part2(input: &Input) -> Output2 {
-    todo!()
+fn part2(_input: &Input) -> Output2 {
+    0
+}
+
+#[allow(dead_code, unused_imports)]
+mod test {
+    use super::*;
+
+    const INPUT: &'static str = r#""#;
+
+    #[test]
+    fn test1() {
+        let input = gen(INPUT);
+        assert_eq!(part1(&input), 0)
+    }
+
+    #[test]
+    fn test2() {
+        let input = gen(INPUT);
+        assert_eq!(part2(&input), 0)
+    }
 }

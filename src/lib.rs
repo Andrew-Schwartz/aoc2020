@@ -1,6 +1,3 @@
-#[macro_use]
-extern crate aoc_runner_derive;
-
-mod day1;
-
-aoc_lib! { year = 2020 }
+pub mod utils;
+pub mod day01;
+pub mod day02;
