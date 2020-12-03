@@ -1,26 +1,36 @@
+use paste::paste;
+
 mod utils;
 mod day01;
 mod day02;
 
 macro_rules! solve {
-    (file $mod:tt, $day:literal, $fname:literal) => {
+    (str $num:literal) => {
         {
-            let input = std::fs::read_to_string(concat!("input/2020/", $fname, ".txt")).unwrap();
-            solve!(internal $mod, $day, input)
+            const INPUT: &'static str = include_str!(concat!("../input/2020/day", $num, ".txt"));
+            solve!(@internal $num INPUT);
         }
     };
-    (include $mod:tt, $day:literal, $fname: literal) => {
+    (file $num:literal) => {
         {
-            const INPUT: &'static str = include_str!(concat!("../input/2020/", $fname, ".txt"));
-            solve!(internal $mod, $day, INPUT)
+            let input = std::fs::read_to_string(concat!("input/2020/day", $num, ".txt")).unwrap();
+            solve!(@internal $num input)
         }
     };
-    (internal $mod:tt, $day:literal, $input:expr) => {
+    (bytes $num:literal) => {
+        {
+            const INPUT: &'static [u8] = include_bytes!(concat!("../input/2020/day", $num, ".txt"));
+            solve!(@internal $num INPUT)
+        }
+    };
+    (@internal $num:literal $input:expr) => {
         {
             use std::time::Instant;
-            use $mod::*;
+            paste! {
+                use [<day$num>]::*;
+            }
 
-            println!($day);
+            println!("Day {}", $num.strip_prefix('0').unwrap_or_else(|| $num));
 
             let tstart = Instant::now();
             let input = gen(&$input);
@@ -39,13 +49,12 @@ macro_rules! solve {
 
             println!();
         }
-    };
+    }
 }
 
 fn main() {
     println!("Advent of Code 2020\n");
 
-    solve!(include day01, "Day 1", "day1");
-
-    solve!(include day02, "Day 2", "day2");
+    solve!(str "01");
+    solve!(str "02");
 }

@@ -2,7 +2,7 @@ use criterion::{black_box, Criterion, criterion_group, criterion_main};
 
 use aoc2020::day02::*;
 
-const INPUT: &'static str = include_str!("../input/2020/day2.txt");
+const INPUT: &'static str = include_str!("../input/2020/day02.txt");
 
 pub fn benchmark_gen(c: &mut Criterion) {
     c.bench_function("Day 2 - Generator", |b| b.iter(|| gen(black_box(INPUT))));
