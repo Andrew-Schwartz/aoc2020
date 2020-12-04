@@ -1,18 +1,19 @@
 use std::collections::BTreeSet;
 
-use crate::utils::UnwrapUnchecked;
+use crate::utils::{UnwrapUnchecked, lines};
+use std::str::from_utf8_unchecked;
 
-pub type Input = BTreeSet<u16>;
+pub type Parsed = BTreeSet<u16>;
 pub type Output1 = u32;
 pub type Output2 = u32;
 
-pub fn gen(input: &str) -> Input {
-    input.lines()
-        .map(|line| unsafe { line.parse().unwrap_unchecked() })
+pub fn parse(input: &[u8]) -> Parsed {
+    lines(input)
+        .map(|line| unsafe { from_utf8_unchecked(line).parse().unwrap_unchecked() })
         .collect()
 }
 
-pub fn part1(input: &Input) -> Output1 {
+pub fn part1(input: &Parsed) -> Output1 {
     let opt = input.iter()
         .map(|&a| {
             let (b, _) = 2020_u16.overflowing_sub(a);
@@ -26,7 +27,7 @@ pub fn part1(input: &Input) -> Output1 {
     }
 }
 
-pub fn part2(input: &Input) -> Output2 {
+pub fn part2(input: &Parsed) -> Output2 {
     let opt = input.iter()
         .flat_map(|&a| input.iter().map(move |&b| (a, b)))
         .filter_map(|(a, b)| 2020_u16.checked_sub(a + b).map(|c| (a, b, c)))
@@ -42,7 +43,7 @@ pub fn part2(input: &Input) -> Output2 {
 mod test {
     use super::*;
 
-    const INPUT: &'static str = r#"1721
+    const INPUT: &'static [u8] = br#"1721
 979
 366
 299
@@ -51,13 +52,13 @@ mod test {
 
     #[test]
     fn test1() {
-        let input = gen(INPUT);
+        let input = parse(INPUT);
         assert_eq!(part1(&input), 514579)
     }
 
     #[test]
     fn test2() {
-        let input = gen(INPUT);
+        let input = parse(INPUT);
         assert_eq!(part2(&input), 241861950)
     }
 }

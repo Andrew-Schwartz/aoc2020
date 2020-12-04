@@ -1,16 +1,16 @@
-type Input = String;
-type Output1 = usize;
-type Output2 = usize;
+pub type Parsed = String;
+pub type Output1 = usize;
+pub type Output2 = usize;
 
-fn gen(input: &str) -> Input {
+pub fn parse(input: &str) -> Input {
     todo!()
 }
 
-fn part1(_input: &Input) -> Output1 {
+pub fn part1(_input: &Input) -> Output1 {
     todo!()
 }
 
-fn part2(_input: &Input) -> Output2 {
+pub fn part2(_input: &Input) -> Output2 {
     todo!()
 }
 
