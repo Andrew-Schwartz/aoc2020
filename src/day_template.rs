@@ -2,15 +2,15 @@ pub type Parsed = String;
 pub type Output1 = usize;
 pub type Output2 = usize;
 
-pub fn parse(input: &str) -> Input {
+pub fn parse(input: &str) -> Parsed {
     todo!()
 }
 
-pub fn part1(_input: &Input) -> Output1 {
+pub fn part1(_input: &Parsed) -> Output1 {
     todo!()
 }
 
-pub fn part2(_input: &Input) -> Output2 {
+pub fn part2(_input: &Parsed) -> Output2 {
     todo!()
 }
 
@@ -22,13 +22,13 @@ mod test {
 
     #[test]
     fn test1() {
-        let input = gen(INPUT);
+        let input = parse(INPUT);
         assert_eq!(part1(&input), todo!())
     }
 
     #[test]
     fn test2() {
-        let input = gen(INPUT);
+        let input = parse(INPUT);
         assert_eq!(part2(&input), todo!())
     }
 }

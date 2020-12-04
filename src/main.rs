@@ -59,6 +59,7 @@ mod utils;
 mod day01;
 mod day02;
 mod day03;
+mod day04;
 
 fn main() {
     println!("Advent of Code 2020\n");
@@ -66,4 +67,5 @@ fn main() {
     solve!(bytes "01" let let let);
     solve!(bytes "02" const const const);
     solve!(bytes "03" const const const);
+    solve!(str "04" let let let)
 }
