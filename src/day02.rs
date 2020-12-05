@@ -84,9 +84,20 @@ const fn nums(sep: u8, i: &mut usize, input: &[u8]) -> usize {
     stou(num)
 }
 
-pub const fn parse(input: &[u8]) -> Parsed { input }
+pub fn parse(_input: &[u8]) -> Parsed {
+    const INPUT: Parsed = cparse();
+    INPUT
+}
 
-pub const fn part1(input: &[u8]) -> Output1 {
+const fn cparse() -> Parsed<'static> { day_input!(bytes "02") }
+
+pub fn part1(_input: &[u8]) -> Output1 {
+    const PARSED: Parsed = cparse();
+    const OUTPUT: Output1 = cpart1(&PARSED);
+    OUTPUT
+}
+
+const fn cpart1(input: &[u8]) -> Output1 {
     let mut count = 0;
     let mut state = FirstNum;
     let (mut l, mut u) = (0, 0);
@@ -124,7 +135,13 @@ pub const fn part1(input: &[u8]) -> Output1 {
     count
 }
 
-pub const fn part2(input: &[u8]) -> Output2 {
+pub fn part2(_input: &[u8]) -> Output2 {
+    const PARSED: Parsed = cparse();
+    const OUTPUT: Output2 = cpart2(&PARSED);
+    OUTPUT
+}
+
+const fn cpart2(input: &[u8]) -> Output2 {
     let mut count = 0;
     let mut state = FirstNum;
     let (mut l, mut u) = (0, 0);
@@ -176,11 +193,11 @@ mod test {
 
     #[test]
     fn test1c() {
-        assert_eq!(part1(INPUT), 2)
+        assert_eq!(cpart1(INPUT), 2)
     }
 
     #[test]
     fn test2c() {
-        assert_eq!(part2(INPUT), 1)
+        assert_eq!(cpart2(INPUT), 1)
     }
 }

@@ -95,3 +95,12 @@ pub const fn stou<const N: usize>(str: [Option<u8>; N]) -> usize {
     }
     res
 }
+
+macro_rules! day_input {
+    (bytes $day:literal) => {
+        include_bytes!(concat!("../input/2020/day", $day, ".txt"))
+    };
+    (str $day:literal) => {
+        include_str!(concat!("../input/2020/day", $day, ".txt"))
+    };
+}

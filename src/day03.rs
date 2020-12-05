@@ -2,9 +2,22 @@ pub type Parsed<'a> = &'a [u8];
 pub type Output1 = usize;
 pub type Output2 = usize;
 
-pub const fn parse(input: &[u8]) -> Parsed { input }
+pub fn parse(_input: &[u8]) -> Parsed {
+    const INPUT: Parsed = cparse(day_input!(bytes "03"));
+    INPUT
+}
 
-pub const fn part1(input: &[u8]) -> Output1 {
+const fn cparse(input: &'static [u8]) -> Parsed<'static> {
+    input
+}
+
+pub fn part1(_input: &[u8]) -> Output1 {
+    const PARSED: Parsed = cparse(day_input!(bytes "03"));
+    const OUTPUT: Output1 = cpart1(&PARSED);
+    OUTPUT
+}
+
+const fn cpart1(input: &[u8]) -> Output1 {
     let mut x = 0;
     let mut y = 0;
     let mut count = 0;
@@ -32,7 +45,13 @@ pub const fn part1(input: &[u8]) -> Output1 {
     count
 }
 
-pub const fn part2(input: &[u8]) -> Output2 {
+pub fn part2(_input: &[u8]) -> Output2 {
+    const PARSED: Parsed = cparse(day_input!(bytes "03"));
+    const OUTPUT: Output2 = cpart2(&PARSED);
+    OUTPUT
+}
+
+const fn cpart2(input: &[u8]) -> Output2 {
     let mut x = 0;
     let mut y = 0;
     let mut counts = (0, 0, 0, 0, 0);
@@ -120,13 +139,11 @@ mod test {
 
     #[test]
     fn test1() {
-        let input = parse(INPUT);
-        assert_eq!(part1(&input), 7)
+        assert_eq!(cpart1(INPUT), 7)
     }
 
     #[test]
     fn test2() {
-        let input = parse(INPUT);
-        assert_eq!(part2(&input), 336)
+        assert_eq!(cpart2(INPUT), 336)
     }
 }

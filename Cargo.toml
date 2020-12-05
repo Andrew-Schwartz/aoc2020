@@ -14,17 +14,21 @@ serde_scan = "0.4.1"
 criterion = "0.3.3"
 
 [[bench]]
-name = "day01"
+name = "bench"
 harness = false
 
-[[bench]]
-name = "day02"
-harness = false
-
-[[bench]]
-name = "day03"
-harness = false
-
-[[bench]]
-name = "day04"
-harness = false
+#[[bench]]
+#name = "day01"
+#harness = false
+#
+#[[bench]]
+#name = "day02"
+#harness = false
+#
+#[[bench]]
+#name = "day03"
+#harness = false
+#
+#[[bench]]
+#name = "day04"
+#harness = false
