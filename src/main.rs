@@ -72,11 +72,13 @@ macro_rules! solve {
 
 #[macro_use]
 mod utils;
+mod const_utils;
 
 solve! {
     "01" bytes,
     "02" bytes,
     "03" bytes,
-    "04" str,
+    "04" bytes,
     "05" bytes,
+    "06" bytes,
 }

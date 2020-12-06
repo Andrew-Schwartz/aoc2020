@@ -6,19 +6,13 @@ pub fn parse(input: &[u8]) -> Parsed {
     input
 }
 
-const fn cparse(input: &'static [u8]) -> Parsed<'static> {
-    input
-}
-
 pub fn part1(_input: &Parsed) -> Output1 {
-    const PARSED: Parsed = cparse(day_input!(bytes "05"));
-    const OUTPUT: Output1 = cpart1(PARSED);
+    const OUTPUT: Output1 = cpart1(day_input!(bytes "05"));
     OUTPUT
 }
 
 pub fn part2(_input: &Parsed) -> Output2 {
-    const PARSED: Parsed = cparse(day_input!(bytes "05"));
-    const OUTPUT: Output2 = cpart2(PARSED);
+    const OUTPUT: Output2 = cpart2(day_input!(bytes "05"));
     OUTPUT
 }
 

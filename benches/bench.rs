@@ -27,14 +27,22 @@ macro_rules! bench {
             $c.bench_function(&format!("Day {} - Part 2", trimmed), |b| b.iter(|| part2(black_box(&parsed))));
         }
     };
+    ($c:expr => $($day:literal $form:tt $(,)?)+) => {
+        $(
+            bench!($form $c, $day);
+        )+
+    };
 }
 
 pub fn benchmark(c: &mut Criterion) {
-    bench!(bytes c, "01");
-    bench!(bytes c, "02");
-    bench!(bytes c, "03");
-    bench!(str   c, "04");
-    bench!(bytes c, "05");
+    bench! { c =>
+        "01" bytes,
+        "02" bytes,
+        "03" bytes,
+        "04" bytes,
+        "05" bytes,
+        "06" bytes,
+    }
 }
 
 criterion_group!(benches, benchmark);

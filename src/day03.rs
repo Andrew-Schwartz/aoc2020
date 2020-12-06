@@ -2,18 +2,17 @@ pub type Parsed<'a> = &'a [u8];
 pub type Output1 = usize;
 pub type Output2 = usize;
 
-pub fn parse(_input: &[u8]) -> Parsed {
-    const INPUT: Parsed = cparse(day_input!(bytes "03"));
-    INPUT
-}
-
-const fn cparse(input: &'static [u8]) -> Parsed<'static> {
+pub fn parse(input: &[u8]) -> Parsed {
     input
 }
 
 pub fn part1(_input: &[u8]) -> Output1 {
-    const PARSED: Parsed = cparse(day_input!(bytes "03"));
-    const OUTPUT: Output1 = cpart1(&PARSED);
+    const OUTPUT: Output1 = cpart1(day_input!(bytes "03"));
+    OUTPUT
+}
+
+pub fn part2(_input: &[u8]) -> Output2 {
+    const OUTPUT: Output2 = cpart2(day_input!(bytes "03"));
     OUTPUT
 }
 
@@ -43,12 +42,6 @@ const fn cpart1(input: &[u8]) -> Output1 {
         i += 1;
     }
     count
-}
-
-pub fn part2(_input: &[u8]) -> Output2 {
-    const PARSED: Parsed = cparse(day_input!(bytes "03"));
-    const OUTPUT: Output2 = cpart2(&PARSED);
-    OUTPUT
 }
 
 const fn cpart2(input: &[u8]) -> Output2 {

@@ -1,5 +1,5 @@
 use State::*;
-use crate::utils::stou;
+use crate::const_utils::stou;
 
 pub type Parsed<'a> = &'a [u8];
 pub type Output1 = usize;
@@ -84,16 +84,17 @@ const fn nums(sep: u8, i: &mut usize, input: &[u8]) -> usize {
     stou(num)
 }
 
-pub fn parse(_input: &[u8]) -> Parsed {
-    const INPUT: Parsed = cparse();
-    INPUT
+pub fn parse(input: &[u8]) -> Parsed {
+    input
 }
 
-const fn cparse() -> Parsed<'static> { day_input!(bytes "02") }
-
 pub fn part1(_input: &[u8]) -> Output1 {
-    const PARSED: Parsed = cparse();
-    const OUTPUT: Output1 = cpart1(&PARSED);
+    const OUTPUT: Output1 = cpart1(day_input!(bytes "02"));
+    OUTPUT
+}
+
+pub fn part2(_input: &[u8]) -> Output2 {
+    const OUTPUT: Output2 = cpart2(day_input!(bytes "02"));
     OUTPUT
 }
 
@@ -133,12 +134,6 @@ const fn cpart1(input: &[u8]) -> Output1 {
         i += 1;
     }
     count
-}
-
-pub fn part2(_input: &[u8]) -> Output2 {
-    const PARSED: Parsed = cparse();
-    const OUTPUT: Output2 = cpart2(&PARSED);
-    OUTPUT
 }
 
 const fn cpart2(input: &[u8]) -> Output2 {
