@@ -42,6 +42,7 @@ pub fn benchmark(c: &mut Criterion) {
         "04" bytes,
         "05" bytes,
         "06" bytes,
+        "07" bytes,
     }
 }
 
